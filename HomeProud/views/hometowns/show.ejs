@@ -1,0 +1,50 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <p class="lead">HomeProud</p>
+        </div>
+        <div class="col-md-9">
+            <div class="thumbnail">
+                <img class="img-responsive" src="<%= hometown.image %>"></img>
+                <div class="caption-full">
+                    <h4><a>This is <%= hometown.name %></a></h4>
+                    <p><%= hometown.description %></p>
+                    <p>
+                        <em>Submitted By <%= hometown.author.username %></em>
+                    </p>
+                    <% if (user && hometown.author.id.equals(user.id)){ %>
+                        <a class="btn btn-xs btn-warning" href="/hometowns/<%= hometown.id %>/edit">Edit</a>
+                        <form id="delete-form" action="/hometowns/<%= hometown.id %>/?_method=DELETE" method="POST">
+                            <button class="btn btn-xs btn-danger">Delete</button>
+                        </form>
+                    <% } %>
+                </div>
+            </div>
+            <div class="well">
+                <div class="text-right">
+                    <a class="btn btn-success" href="/hometowns/<%= hometown.id %>/comments/new">Make New comments</a>
+                </div>
+                <hr></hr>
+                <% hometown.comments.forEach(function(comment){ %>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <strong><%= comment.author.username %></strong>
+                            <span class="pull-right">10 days ago</span>
+                            <p><%= comment.text %></p>
+                            <% if (user && comment.author.id.equals(user.id)) { %>
+                            <form action="/hometowns/<%= hometown.id %>/comments/<%= comment.id %>/?_method=DELETE" method="POST">
+                                <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                            </form>
+                            <% } %>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<% include ../partials/footer %>

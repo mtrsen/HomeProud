@@ -1,0 +1,24 @@
+<% include ../partials/header %>
+<div class="container">
+    <div class="row">
+        <h1 style="text-align: center">Edit <%= hometown.name %></h1>
+        <div style="width:30%; margin:30px auto">
+            <form action="/hometowns/<%= hometown.id %>/?_method=put" method="POST">
+                <div class="form-group">
+                    <input class="form-control" type="text" value="<%= hometown.name %>" name="hometown[name]">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" value="<%= hometown.image %>" name="hometown[url]">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" value="<%= hometown.description%>" name="hometown[description]">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-lg btn-default btn-block btn-primary">Submit!</button>
+                </div>
+            </form>
+            <a href="/hometowns">Back</a> 
+        </div>
+    </div>
+</div>
+<% include ../partials/footer %>

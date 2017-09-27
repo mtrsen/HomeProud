@@ -1,0 +1,32 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <header class="jumbotron">
+            <div class="container">
+                <h1>Welcome to HomeProud!</h1>
+            <p>View our hand-picked hometown from all over the worlds!</p>
+            <p>
+                <a class="btn btn-primary btn-lg" href="/hometowns/new">Add new hometown</a>
+            </p>
+        </div>
+        
+    </header>
+    
+    <div class="row text-center" style="display:flex; flex-wrap:wrap;">
+        <% hometowns.forEach(function(hometown){ %>
+            <div class="col-md-3 col-sm-6">
+                <div class="thumbnail">
+                    <img src="<%= hometown.image %>">
+                    <div class="caption">
+                        <h4><%= hometown.name %></h4>
+                    </div>
+                    <p>
+                        <a href="/hometowns/<%= hometown._id %>" class="btn btn-primary">More Info</a>
+                    </p>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+</div>
+
+<% include ../partials/footer %>
