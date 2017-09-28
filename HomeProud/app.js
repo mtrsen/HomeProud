@@ -14,8 +14,9 @@ var commentRoutes    = require("./routes/comments"),
     indexRoutes      = require("./routes/index");
 // populate sample seeds    
 //seedDB();
-
-mongoose.connect("mongodb://localhost/yelp_camp");
+mongoose.connect(process.env.DATABASEURL);
+//mongodb://localhost/yelp_camp
+// "mongodb://hansen:9393ZHSzhs@ds153494.mlab.com:53494/homeproud"
 app.use(express.static(__dirname + "/public"));
 
 // passport configuration
